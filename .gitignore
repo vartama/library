@@ -1,0 +1,19 @@
+# Env & secrets
+.env
+backend/.env
+frontend/.env
+
+# Local notes / forbidden submission files
+task.md
+gitlab.md
+
+# Build & coverage artifacts
+backend/bin/
+coverage/
+coverage.out
+frontend/dist/
+frontend/node_modules/
+
+# OS / Editor
+.DS_Store
+Thumbs.db

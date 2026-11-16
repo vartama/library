@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS lending_items;
+DROP TABLE IF EXISTS lendings;

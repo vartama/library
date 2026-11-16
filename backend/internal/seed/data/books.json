@@ -1,0 +1,9 @@
+[
+  { "title": "River of Salt", "author": "Adaeze Okafor", "genre": "Fiction", "stock": 2 },
+  { "title": "The Pragmatic Gardener", "author": "Lena Ortiz", "genre": "Science", "stock": 6 },
+  { "title": "Tiny Dragons at Bedtime", "author": "Sam Hart", "genre": "Children", "stock": 0 },
+  { "title": "A Short History of Tea", "author": "Mira Chen", "genre": "History", "stock": 4 },
+  { "title": "Clean Interfaces", "author": "Joel Barros", "genre": "Technology", "stock": 3 },
+  { "title": "Letters from the Harbour", "author": "Nadia Rahman", "genre": "Fiction", "stock": 8 },
+  { "title": "The Quiet Mathematician", "author": "Ola Berg", "genre": "Biography", "stock": 1 }
+]
