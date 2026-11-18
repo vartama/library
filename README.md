@@ -1,6 +1,30 @@
 # Vartama Library
 
-Web application for managing book inventory, genre master data, multi-book lending with pre-confirmation summary, and lending history.
+Full-stack library management and book-lending web application built with **Go (Bun ORM + PostgreSQL)** and **React**. Designed to help librarians manage catalogs, prevent stock errors during concurrent lending, and keep a complete audit trail of every loan.
+
+## Overview
+
+Community libraries often struggle with manual stock tracking, accidental duplicate entries, and missing records when multiple staff members lend books at the same time. **Vartama Library** solves this with:
+- Clear separation of duties between **Head Librarian (Admin)** and **Library Staff**,
+- A **two-step lending workflow** with a pre-confirmation summary before any stock is deducted,
+- **Atomic database transactions** that prevent overselling or negative stock on concurrent loans, and
+- **Scalable catalog browsing** (search, genre filter, column sorting, pagination, and optional Redis caching) tested with 1,000+ books.
+
+## Key Features
+
+- **Role-Based Access Control:** JWT-based sign-in with protected API endpoints and login rate limiting (`admin` manages books and genres; `user`/staff browses catalog, lends books, and reviews history).
+- **Book & Genre Management:** Create, edit, and remove books with case-insensitive duplicate checks, automatic stock status badges (`In stock`, `Low`, `Out of stock`), and genre master data that blocks deletion while books still reference it.
+- **Discovery at Scale (1,000+ Books):** Server-side search (title or author), genre filter, title/stock sorting, pagination, and a searchable book picker during lending.
+- **Two-Step Multi-Book Lending:** Add multiple titles in one loan, validate quantities and future due dates, review totals and projected stock in a summary step, and deduct stock atomically on confirmation.
+- **Audit-Ready Lending History:** Records borrower info, due date, book title snapshots (preserved even if a book is later deleted), and the staff member who confirmed the transaction (`Lent by`).
+- **Responsive UI & Theme Support:** Desktop sidebar and mobile drawer navigation, responsive stacked cards on small screens, and automatic/toggleable light & dark themes.
+
+## Engineering & Quality Highlights
+
+- **Data Consistency:** PostgreSQL ACID transactions (`RunInTx` + deterministic `SELECT ... FOR UPDATE` row locking) prevent race conditions and deadlocks without manual rollback scripts.
+- **Resilient Caching:** Optional version-keyed Redis cache for catalog reads (`GET /api/books`, `/api/books/overview`, `/api/genres`) that automatically fails open to PostgreSQL if Redis is unavailable.
+- **Automated Testing:** Frontend covered by Vitest + React Testing Library (`144` component/unit tests) and backend covered by Go unit & HTTP integration tests (`go test`).
+- **One-Command Deployment:** Multi-stage Dockerfiles for the Go API (`alpine`) and React SPA (`nginx`), orchestrated with PostgreSQL and Redis via Docker Compose.
 
 ## Tech Stack
 
